@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  app-registrar-usuario:
+    build: .
+    container_name: app-registrar-usuario
+    ports:
+      - "3000:3000"
+  
+  nginx:
+    image: nginx:latest
+    container_name: my-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app-registrar-usuario
